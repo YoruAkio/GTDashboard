@@ -1,7 +1,4 @@
 import { WebSocket } from 'ws';
-import http from 'http';
-
-export const runtime = 'edge';
 
 export default function handler(req, res) {
     if (req.method === 'POST') {

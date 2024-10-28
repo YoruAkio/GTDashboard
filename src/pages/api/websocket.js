@@ -1,7 +1,5 @@
 import { WebSocketServer } from 'ws';
 
-export const runtime = 'edge';
-
 let wsServer;
 
 export default function handler(req, res) {

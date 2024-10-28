@@ -1,11 +1,3 @@
-import { getRequestContext } from '@cloudflare/next-on-pages'
-
-export const config = {
-    runtime: 'edge',
-}
-
-// NOTE: CHANGE WSS AUTH HANDLER INTO QUERY PARAMS
-
 export default async function handler(req) {
     try {
         const response = await fetch('http://localhost:9002', {
