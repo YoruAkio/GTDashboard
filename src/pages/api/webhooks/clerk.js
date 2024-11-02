@@ -58,7 +58,7 @@ export default async function handler(req, res) {
       clerkId: id,
       email: email_addresses[0].email_address,
       username: username,
-      image: image_url,
+      photo: image_url,
       createdAt: created_at,
     };
 
