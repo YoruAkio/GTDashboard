@@ -7,7 +7,7 @@ import { createUser } from "@/actions/user";
 
 export default async function handler(req, res) {
     if (req.method === "POST") {
-        const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
+        const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET;
 
         if (!WEBHOOK_SECRET) {
             return NextResponse.error("Please define the WEBHOOK_SECRET environment variable");
