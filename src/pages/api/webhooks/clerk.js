@@ -1,6 +1,6 @@
 import { Webhook } from 'svix';
 import { buffer } from 'micro';
-import { createUser, updateUser, deleteUser } from '@/actions/user';
+import { createUser, updateUser } from '@/actions/user';
 import { clerkClient } from '@clerk/clerk-sdk-node';
 
 export const config = {
@@ -50,12 +50,12 @@ export default async function handler(req, res) {
   const { id } = evt.data;
   const eventType = evt.type;
 
-  if (eventType === "user.created" || eventType === "user.updated" || eventType === "user.deleted") {
+  if (eventType === "user.created" || eventType === "user.updated") {
     const { id, email_addresses, first_name, image_url, created_at, roles } = evt.data;
 
     const uData = {
       clerkId: id,
-      email: email_addresses ? email_addresses[0].email_address : undefined,
+      email: email_addresses[0].email_address,
       username: first_name,
       photo: image_url,
       createdAt: created_at,
@@ -69,11 +69,9 @@ export default async function handler(req, res) {
       nUser = await createUser(uData);
     } else if (eventType === "user.updated") {
       nUser = await updateUser(id, uData);
-    } else if (eventType === "user.deleted") {
-      nUser = await deleteUser(id);
     }
 
-    if (nUser && eventType !== "user.deleted") {
+    if (nUser) {
       await clerkClient.users.updateUserMetadata(id, {
         publicMetadata: {
           userId: nUser._id,
@@ -81,8 +79,8 @@ export default async function handler(req, res) {
       });
     }
 
-    console.log(`${eventType === "user.created" ? "Created" : eventType === "user.updated" ? "Updated" : "Deleted"} user with id ${id}`);
-    return res.status(200).json({ message: `${eventType === "user.created" ? "User created" : eventType === "user.updated" ? "User updated" : "User deleted"}`, user: nUser });
+    console.log(`${eventType === "user.created" ? "Created" : "Updated"} user with id ${id}`);
+    return res.status(200).json({ message: `${eventType === "user.created" ? "User created" : "User updated"}`, user: nUser });
   }
 
   console.log(`Webhook with an ID of ${id} and type of ${eventType}`);
