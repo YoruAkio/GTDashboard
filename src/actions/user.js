@@ -17,8 +17,11 @@ export async function createUser(data) {
 
 export async function updateUser(id, data) {
     try {
+        const clerkId = {
+            clerkId: id
+        }
         await connectToDatabase();
-        const user = await User.findById(id);
+        const user = await User.findOne(clerkId);
         if (user) {
             user.email = data.email;
             user.username = data.username;
