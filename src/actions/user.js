@@ -36,3 +36,17 @@ export async function updateUser(id, data) {
         return error;
     }
 }
+
+export async function deleteUser(id) {
+    try {
+        const clerkId = {
+            clerkId: id
+        };
+        await connectToDatabase();
+        const user = await User.findOneAndDelete(clerkId);
+        return JSON.parse(JSON.stringify(user));
+    } catch (error) {
+        console.log(error);
+        return error;
+    }
+}
