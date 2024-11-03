@@ -27,6 +27,7 @@ export async function updateUser(id, data) {
             user.username = data.username;
             user.photo = data.photo;
             user.createdAt = data.createdAt;
+            user.roles = data.roles;
             await user.save();
             return JSON.parse(JSON.stringify(user));
         }

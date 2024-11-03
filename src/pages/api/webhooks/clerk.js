@@ -51,7 +51,7 @@ export default async function handler(req, res) {
   const eventType = evt.type;
 
   if (eventType === "user.created" || eventType === "user.updated") {
-    const { id, email_addresses, first_name, image_url, created_at } = evt.data;
+    const { id, email_addresses, first_name, image_url, created_at, roles } = evt.data;
 
     const uData = {
       clerkId: id,
@@ -59,6 +59,7 @@ export default async function handler(req, res) {
       username: first_name,
       photo: image_url,
       createdAt: created_at,
+      roles: roles,
     };
 
     console.log(uData);
