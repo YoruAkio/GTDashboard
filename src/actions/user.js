@@ -41,6 +41,7 @@ export async function getUserRole(id) {
     try {
         await connectToDatabase();
         const user = await User.findOne({ clerkId: id });
+        console.log(user);
         return user.roles;
     } catch (error) {
         console.error("Error fetching user roles:", error);

@@ -2,7 +2,7 @@ import { SignedIn, SignedOut, SignInButton, UserButton, useUser } from '@clerk/n
 import { FaBars, FaTimes, FaUser, FaServer, FaSun, FaMoon } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { getUserRole } from '@/actions/user';
+// import { getUserRole } from '@/actions/user';
 
 export default function Dashboard() {
     const { user } = useUser();
@@ -28,20 +28,20 @@ export default function Dashboard() {
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
 
-    useEffect(() => {
-        const fetchRoles = async () => {
-            try {
-                const data = await getUserRole(user?.id);
-                setRoles(data);
-            } catch (error) {
-                console.error('Error fetching roles:', error);
-            }
-        };
+    // useEffect(() => {
+    //     const fetchRoles = async () => {
+    //         try {
+    //             const data = await getUserRole(user?.id);
+    //             setRoles(data);
+    //         } catch (error) {
+    //             console.error('Error fetching roles:', error);
+    //         }
+    //     };
 
-        if (user) {
-            fetchRoles();
-        }
-    }, [user]);
+    //     if (user) {
+    //         fetchRoles();
+    //     }
+    // }, [user]);
 
     return (
         <main className="flex flex-col min-h-screen bg-base-200 text-base-content relative">
@@ -115,7 +115,8 @@ export default function Dashboard() {
                                 <div className="divider"></div>
                                 <div className="flex flex-col">
                                     <h2 className="text-lg md:text-2xl font-bold mb-4">In-Game Information ( <a className='underline'>EthernityPS</a> )</h2>
-                                    <p className="text-sm md:text-2xl"><strong>Role:</strong> {roles.length > 0 ? roles[0].roles : 'Loading...'}</p>
+                                    {/* <p className="text-sm md:text-2xl"><strong>Role:</strong> {roles.length > 0 ? roles[0].roles : 'Loading...'}</p> */}
+                                    <p className="text-sm md:text-2xl"><strong>Role:</strong> Entity</p>
                                     <p className="text-sm md:text-2xl"><strong>Networth:</strong> ...Not a num</p>
                                     <p className="text-sm md:text-2xl"><strong>World Owned:</strong> ...[Object object]</p>
                                 </div>

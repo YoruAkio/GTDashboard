@@ -1,40 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# GTDashboard
+
+Growtopia Dashboard is a web application that allows users to manage their accounts, view server information, and view their in-game information. It is designed to be a user-friendly and intuitive interface for managing their accounts and accessing their server information. The application is built using Next.js, Clerk, MidTrans, and MongoDB.
+
+## Note
+
+This project is still in development and may not be fully functional. and this repo might be not maintained. I'm not responsible for any issues that may arise from using this project.
+
+## Table of Contents
+
+- [GTDashboard](#gtdashboard)
+  - [Note](#note)
+  - [Table of Contents](#table-of-contents)
+  - [Getting Started](#getting-started)
+  - [Environment Variables and Configuration](#environment-variables-and-configuration)
+  - [Features](#features)
+  - [Screenshots](#screenshots)
+    - [Homepage](#homepage)
+    - [Dashboard](#dashboard)
+    - [Roles](#roles)
+    - [Error that i had, and makes me sad :(](#error-that-i-had-and-makes-me-sad-)
+  - [Contact](#contact)
+  - [Contributing](#contributing)
+  - [Acknowledgments](#acknowledgments)
+  - [License](#license)
 
 ## Getting Started
 
-First, run the development server:
+To get started with the project, follow these steps:
 
-```bash
+```sh
+# Clone the repository
+git clone https://github.com/YoruAkio/GTDashboard.git
+
+# Navigate to the project directory
+cd GTDashboard
+
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables and Configuration
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+The application requires the following environment variables to be set:
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+- `CLERK_SECRET`: The secret key for your Clerk project.
+- `CLERK_API_URL`: The URL of your Clerk API.
+- `CLERK_WEBHOOK_SECRET`: The secret key for your Clerk webhook.
+- `MONGODB_URI`: The connection string for your MongoDB database.
+- `MIDTRANS_CLIENT_KEY`: The API key for your MidTrans account.
+- `MIDTRANS_CLIENT_SECRET`: The API secret for your MidTrans account.
+- `NEXT_PULIC_API`: The API key for your Next Public API.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+You can copy the `.env.example` file and rename it to `.env` to set these variables.
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Features
 
-## Learn More
+- User authentication using Clerk
+- Server information viewing
+- In-game information viewing
+- User management via Clerk
 
-To learn more about Next.js, take a look at the following resources:
+## Screenshots
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+### Homepage
+![Homepage Screenshot](assets/home.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Dashboard
+![Dashboard Screenshot](assets/dashboard.png)
 
-## Deploy on Vercel
+### Roles
+![Roles Screenshot](assets/roles.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+### Error that i had, and makes me sad :(
+![Dashboard Screenshot](assets/error.jpg)
+
+## Contact
+
+- Telegram: [@YoruAkio](https://t.me/YoruAkio)
+- Nakai Community: [Discord](https://discord.com/invite/ESsBxptJqr)
+
+## Contributing
+
+Contributions are welcome! If you have any suggestions or improvements, please open an issue or submit a pull request.
+
+## Acknowledgments
+
+I would like to thank the developers of Clerk, MidTrans, and Next Public API for their open-source projects that have been instrumental in the development of this project.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
