@@ -36,7 +36,7 @@ git clone https://github.com/YoruAkio/GTDashboard.git
 cd GTDashboard
 
 # Install dependencies
-npm install
+npm install --force # Adding --force flag because got an error with peerDepedency from clerk and framer-motion
 
 # Start the development server
 npm run dev
@@ -53,8 +53,6 @@ The application requires the following environment variables to be set:
 - `MIDTRANS_CLIENT_KEY`: The API key for your MidTrans account.
 - `MIDTRANS_CLIENT_SECRET`: The API secret for your MidTrans account.
 - `NEXT_PULIC_API`: The API key for your Next Public API.
-
-You can copy the `.env.example` file and rename it to `.env` to set these variables.
 
 ## Features
 
