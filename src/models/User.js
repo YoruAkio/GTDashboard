@@ -23,6 +23,11 @@ const userSchema = new Schema({
         required: true,
         default: Date.now,
     },
+    roles: {
+        type: Number,
+        required: true,
+        default: 0,
+    }
 });
 
 export default models.User || model('User', userSchema);

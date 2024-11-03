@@ -1,8 +1,6 @@
 import { Webhook } from 'svix';
-import { WebhookEvent } from '@clerk/nextjs/server';
 import { buffer } from 'micro';
-import { createUser } from '@/actions/user';
-// import { clerkClient } from "@clerk/nextjs/server";
+import { createUser, updateUser } from '@/actions/user';
 import { clerkClient } from '@clerk/clerk-sdk-node';
 
 export const config = {
@@ -52,7 +50,7 @@ export default async function handler(req, res) {
   const { id } = evt.data;
   const eventType = evt.type;
 
-  if (eventType === "user.created") {
+  if (eventType === "user.created" || eventType === "user.updated") {
     const { id, email_addresses, first_name, image_url, created_at } = evt.data;
 
     const uData = {
@@ -65,7 +63,12 @@ export default async function handler(req, res) {
 
     console.log(uData);
 
-    const nUser = await createUser(uData);
+    let nUser;
+    if (eventType === "user.created") {
+      nUser = await createUser(uData);
+    } else if (eventType === "user.updated") {
+      nUser = await updateUser(id, uData);
+    }
 
     if (nUser) {
       await clerkClient.users.updateUserMetadata(id, {
@@ -75,8 +78,8 @@ export default async function handler(req, res) {
       });
     }
 
-    console.log(`Created user with id ${id}`);
-    return res.status(200).json({ message: "User created", user: nUser });
+    console.log(`${eventType === "user.created" ? "Created" : "Updated"} user with id ${id}`);
+    return res.status(200).json({ message: `${eventType === "user.created" ? "User created" : "User updated"}`, user: nUser });
   }
 
   console.log(`Webhook with an ID of ${id} and type of ${eventType}`);
