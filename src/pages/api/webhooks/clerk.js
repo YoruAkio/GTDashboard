@@ -2,7 +2,8 @@ import { Webhook } from 'svix';
 import { WebhookEvent } from '@clerk/nextjs/server';
 import { buffer } from 'micro';
 import { createUser } from '@/actions/user';
-import { clerkClient } from "@clerk/nextjs/server";
+// import { clerkClient } from "@clerk/nextjs/server";
+import { clerkClient } from '@clerk/clerk-sdk-node';
 
 export const config = {
   api: {
@@ -52,12 +53,12 @@ export default async function handler(req, res) {
   const eventType = evt.type;
 
   if (eventType === "user.created") {
-    const { id, email_addresses, username, image_url, created_at } = evt.data;
+    const { id, email_addresses, first_name, image_url, created_at } = evt.data;
 
     const uData = {
       clerkId: id,
       email: email_addresses[0].email_address,
-      username: username,
+      username: first_name,
       photo: image_url,
       createdAt: created_at,
     };
