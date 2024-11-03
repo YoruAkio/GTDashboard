@@ -37,16 +37,13 @@ export async function updateUser(id, data) {
     }
 }
 
-export async function deleteUser(id) {
+export async function getUserRole(id) {
     try {
-        const clerkId = {
-            clerkId: id
-        };
         await connectToDatabase();
-        const user = await User.findOneAndDelete(clerkId);
-        return JSON.parse(JSON.stringify(user));
+        const user = await User.findOne({ clerkId: id });
+        return user.roles;
     } catch (error) {
-        console.log(error);
+        console.error("Error fetching user roles:", error);
         return error;
     }
 }
